@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/bannerImage"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/bannerFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_alignBottom="@id/bannerImage"
+        android:layout_alignRight="@id/bannerImage"
+        android:layout_marginBottom="3dp"
+        android:gravity="center"
+        android:paddingLeft="12dp"
+        android:paddingRight="10dp"
+        android:shadowColor="#33000000"
+        android:text="推荐"
+        android:textColor="#ffffffff"
+        android:textSize="14sp" />
+
+</RelativeLayout>

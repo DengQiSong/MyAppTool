@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="two_text_grey">
+        <item name="android:textColor">#676767</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>
