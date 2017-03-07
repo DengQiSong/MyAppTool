@@ -23,3 +23,7 @@ greendao数据库操作的例子
 convenientbanner实现benner效果
 
 ImageSelectView图片选择
+
+调用系统DownloadManager实现后台下载APK
+
+6.0以上动态权限获取的封装
