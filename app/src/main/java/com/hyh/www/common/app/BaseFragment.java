@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
 import com.hyh.www.common.config.easyPermission.easyPermission.EasyPermission;
@@ -24,6 +26,19 @@ public class BaseFragment extends Fragment implements EasyPermission.PermissionC
     public void onAttach(Context context) {
         super.onAttach(context);
         this.mContext = context;
+    }
+
+    public void toast(String content) {
+        Toast.makeText(getActivity().getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+    }
+
+    //居中显示的Toast
+    public void showToast(String content) {
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(), content, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
     }
 
     @Override

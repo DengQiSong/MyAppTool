@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
 import com.hyh.www.common.config.easyPermission.easyPermission.EasyPermission;
@@ -64,6 +66,17 @@ public class BaseActivity extends AppCompatActivity implements EasyPermission.Pe
     protected void onDestroy() {
         lifecycleSubject.onNext(ActivityLifeCycleEvent.DESTROY);
         super.onDestroy();
+    }
+
+    public void toast(String content) {
+        Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+    }
+
+    //居中显示的Toast
+    public void showToast(String content) {
+        Toast toast = Toast.makeText(this.getApplicationContext(), content, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
     @Override
