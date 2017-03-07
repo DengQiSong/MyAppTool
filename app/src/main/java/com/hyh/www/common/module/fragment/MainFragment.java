@@ -1,4 +1,4 @@
-package com.hyh.www.common.module;
+package com.hyh.www.common.module.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

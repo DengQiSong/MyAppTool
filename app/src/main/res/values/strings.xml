@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">架构封装</string>
-    <string name="bottom_navi_htn_home">主页</string>
+    <string name="home">主页</string>
+    <string name="web">网站</string>
+    <string name="test">测试</string>
+    <string name="my">个人</string>
 </resources>

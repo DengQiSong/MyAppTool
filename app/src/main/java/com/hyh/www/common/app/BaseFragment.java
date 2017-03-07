@@ -3,13 +3,20 @@ package com.hyh.www.common.app;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
 import com.hyh.www.common.config.easyPermission.easyPermission.EasyPermission;
+
+import rx.subjects.PublishSubject;
 
 /**
  * 作者：Denqs on 2017/2/27.
@@ -21,11 +28,38 @@ public class BaseFragment extends Fragment implements EasyPermission.PermissionC
     private int mRequestCode;
     private String[] mPermissions;
     private PermissionCallBackM mPermissionCallBack;
+    //生命周期控制
+    public final PublishSubject<ActivityLifeCycleEvent> lifecycleSubject = PublishSubject.create();
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.mContext = context;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        lifecycleSubject.onNext(ActivityLifeCycleEvent.CREATE);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onPause() {
+        lifecycleSubject.onNext(ActivityLifeCycleEvent.PAUSE);
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        lifecycleSubject.onNext(ActivityLifeCycleEvent.STOP);
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        lifecycleSubject.onNext(ActivityLifeCycleEvent.DESTROY);
+        super.onDestroy();
     }
 
     public void toast(String content) {
