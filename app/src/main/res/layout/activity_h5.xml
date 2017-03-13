@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/yam"
+    <LinearLayout
+        android:id="@+id/web_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="亚马逊" />
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
 
 </LinearLayout>
