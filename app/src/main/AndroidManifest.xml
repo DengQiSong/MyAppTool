@@ -68,7 +68,13 @@
         <activity
             android:name=".module.Html5Activity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:process=":dqs.web">
+            <intent-filter>
+                <action android:name="com.dqs.www.ui.activity.htmlactivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            </activity>
     </application>
 
 </manifest>

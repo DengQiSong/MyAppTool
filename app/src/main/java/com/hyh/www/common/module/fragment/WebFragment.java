@@ -47,7 +47,7 @@ public class WebFragment extends BaseFragment {
          view.findViewById(R.id.yam).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 startActivity(new Intent(getActivity(), Html5Activity.class));
+                 startActivity(new Intent("com.dqs.www.ui.activity.htmlactivity"));
              }
          });
     }
