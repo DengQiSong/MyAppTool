@@ -2,12 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <com.hyh.www.common.widget.CircularImageView
+        android:layout_margin="20dp"
+        android:id="@+id/circular"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="这个还是空白页"
         android:textSize="36sp" />

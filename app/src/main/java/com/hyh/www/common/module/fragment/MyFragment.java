@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
+import com.hyh.www.common.widget.CircularImageView;
 
 /**
  * 作者：Denqs on 2017/3/7.
@@ -28,6 +29,13 @@ public class MyFragment  extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_my, container, false);
+        initView(v);
         return v;
+    }
+
+    public void initView(View v){
+        CircularImageView imageView=(CircularImageView) v.findViewById(R.id.circular);
+        imageView.setRect_adius(90);
+        imageView.setImageResource(R.mipmap.ic_itme);
     }
 }
