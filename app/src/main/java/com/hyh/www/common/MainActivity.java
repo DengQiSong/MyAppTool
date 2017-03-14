@@ -4,27 +4,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.hyh.www.common.app.ActivityLifeCycleEvent;
 import com.hyh.www.common.app.BaseActivity;
-import com.hyh.www.common.config.http.Api;
-import com.hyh.www.common.config.http.BaseSubscriber;
-import com.hyh.www.common.config.http.HttpUtil;
 import com.hyh.www.common.module.fragment.MainFragment;
 import com.hyh.www.common.module.fragment.MyFragment;
-import com.hyh.www.common.module.fragment.TestFragment;
+import com.hyh.www.common.module.fragment.Test.TestFragment;
 import com.hyh.www.common.module.fragment.WebFragment;
-import com.hyh.www.common.utils.DownloadUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import rx.Observable;
 
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener{
     private Map<Integer, Fragment> mFragmentMap = new HashMap<>();//底部菜单对应fragment

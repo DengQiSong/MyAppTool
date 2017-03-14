@@ -20,4 +20,7 @@ public interface BaseView<T> {
 
     void setPresenter(T presenter);
 
+    //提示
+    void showTip(String message);
+
 }

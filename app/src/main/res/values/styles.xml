@@ -8,6 +8,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--状态栏颜色-->
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="windowNoTitle">true</item>-->
     </style>
 
     <!--start: dialog-->
