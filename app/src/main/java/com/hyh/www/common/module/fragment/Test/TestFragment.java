@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
@@ -26,6 +27,7 @@ import rx.Observable;
 
 public class TestFragment extends BaseFragment implements TestContract.View{
     private TestContract.Presenter presenter;
+    private TextView tv;
     public static TestFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
         args.putString(MainActivity.ARGS_NAVI_BTN_NAME, fragConent);
@@ -57,13 +59,10 @@ public class TestFragment extends BaseFragment implements TestContract.View{
                 presenter.doDownload(getContext());
             }
         });
+        tv=(TextView) view.findViewById(R.id.tv_text);
     }
 
 
-    @Override
-    public void addSuccess() {
-            toast("成功");
-    }
 
 
     @Override
@@ -74,5 +73,10 @@ public class TestFragment extends BaseFragment implements TestContract.View{
     @Override
     public void showTip(String message) {
         toast(message);
+    }
+
+    @Override
+    public void addSuccess(String string) {
+        tv.setText(string);
     }
 }

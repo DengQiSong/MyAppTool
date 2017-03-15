@@ -14,7 +14,7 @@ import rx.subjects.PublishSubject;
 
 public interface TestContract {
     interface View extends BaseView<Presenter> {
-        void addSuccess();
+        void addSuccess(String string);
     }
 
     interface Presenter extends BasePresenter {

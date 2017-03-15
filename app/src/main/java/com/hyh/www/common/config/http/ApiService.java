@@ -1,5 +1,9 @@
 package com.hyh.www.common.config.http;
 
+import com.hyh.www.common.module.vo.Subject;
+
+import java.util.List;
+
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -14,5 +18,5 @@ public interface ApiService {
     Observable<HttpResult> getWeathercnData(@Query("cityName") String city);
 
     @GET("top250")
-    Observable<HttpResult> getTopMovie(@Query("start") int start, @Query("count") int count);
+    Observable<HttpResult<List<Subject>>> getTopMovie(@Query("start") int start, @Query("count") int count);
 }
