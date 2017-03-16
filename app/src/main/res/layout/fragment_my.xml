@@ -2,19 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#dcdcdc"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:padding="12dp">
+
 
     <com.hyh.www.common.widget.CircularImageView
-        android:layout_margin="20dp"
         android:id="@+id/circular"
-        android:layout_width="60dp"
-        android:layout_height="60dp"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY" />
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="#ffffff"
         android:gravity="center"
         android:text="这个还是空白页"
         android:textSize="36sp" />

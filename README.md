@@ -30,3 +30,5 @@ ImageSelectView图片选择
 调用系统DownloadManager实现后台下载APK
 
 6.0以上动态权限获取的封装
+
+图片裁剪ucrop的添加使用

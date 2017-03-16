@@ -17,15 +17,15 @@ public class ImageLoaderUtil {
     private static ImageLoaderUtil mInstance;
     private BaseImageLoaderStrategy mStrategy;
 
-    private ImageLoaderUtil(){
-        mStrategy =new GlideImageLoaderProvider();
+    private ImageLoaderUtil() {
+        mStrategy = new GlideImageLoaderProvider();
     }
 
     //single instance
-    public static ImageLoaderUtil getInstance(){
-        if(mInstance ==null){
-            synchronized (ImageLoaderUtil.class){
-                if(mInstance == null){
+    public static ImageLoaderUtil getInstance() {
+        if (mInstance == null) {
+            synchronized (ImageLoaderUtil.class) {
+                if (mInstance == null) {
                     mInstance = new ImageLoaderUtil();
                     return mInstance;
                 }
@@ -35,11 +35,11 @@ public class ImageLoaderUtil {
     }
 
 
-    public void loadImage(Context context, ImageLoader img){
-        mStrategy.loadImage(context,img);
+    public void loadImage(Context context, ImageLoader img) {
+        mStrategy.loadImage(context, img);
     }
 
-    public void setLoadImgStrategy(BaseImageLoaderStrategy strategy){
-        mStrategy =strategy;
+    public void setLoadImgStrategy(BaseImageLoaderStrategy strategy) {
+        mStrategy = strategy;
     }
 }

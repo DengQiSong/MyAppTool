@@ -2,6 +2,7 @@ package com.hyh.www.common.widget;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,7 +15,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.hyh.www.common.R;
+import com.hyh.www.common.utils.IOUtil;
 import com.hyh.www.common.utils.SDCardUtils;
+import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
 
@@ -24,7 +28,7 @@ import java.io.File;
  */
 
 public class ImageSelectView extends Activity {
-    public static final String TEMP_PHOTO_FILE_NAME = "picker_hyh_temp.jpg";
+    public static final String TEMP_PHOTO_FILE_NAME = "picker_hyh_temp.png";
     String ImageName;
 
     @Override
@@ -81,6 +85,31 @@ public class ImageSelectView extends Activity {
         }
     }
 
+    //线程安全
+    public void Toast(CharSequence text) {
+        if (null != text) {
+            Toast.makeText(getApplication(), text, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * 图片裁剪功能
+     *
+     * @param uri
+     */
+    private void startPhotoZoom(Uri uri) {
+        UCrop.Options options = new UCrop.Options();
+        //设置裁剪图片的保存格式
+        options.setCompressionFormat(Bitmap.CompressFormat.PNG);
+        //设置裁剪图片的图片质量
+        options.setCompressionQuality(90);
+        UCrop.of(uri, Uri.fromFile(IOUtil.makeLocalImageFile(TEMP_PHOTO_FILE_NAME)))
+                .withOptions(options)
+                .withAspectRatio(8, 8)
+                .withMaxResultSize(800, 800)
+                .start(ImageSelectView.this);
+    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -97,12 +126,18 @@ public class ImageSelectView extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode != 102)
-            if (data == null)
-                return;
-
         Intent intent = new Intent();
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            final Uri resultUri = UCrop.getOutput(data);
+            intent.setData(resultUri);
+            this.setResult(10002, intent);
+            finish();
+            overridePendingTransition(R.anim.in_anim, R.anim.in_from_down);
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable cropError = UCrop.getError(data);
+            Log.e("ImageSelectView", cropError.toString());
+            Toast(cropError.toString());
+        }
         switch (requestCode) {
             case 102:
                 // 设置文件保存路径这里放在跟目录下
@@ -114,28 +149,25 @@ public class ImageSelectView extends Activity {
                     Toast("拍照出错，请重新再试！");
                     return;
                 }
-                Log.e("EditDataActivity", "相机：ImageName:" + ImageName);
-                intent.setAction("10011");
-                intent.setType(ImageName);
-                this.setResult(10002, intent);
+                startPhotoZoom(Uri.fromFile(new File(ImageName)));
                 break;
             case 103:
                 if (null == data || null == data.getData()) {
                     return;
                 }
-                intent.setAction("10022");
-                intent.setData(data.getData());
-                this.setResult(10002, intent);
+                startPhotoZoom(data.getData());
                 break;
         }
-        finish();
-        overridePendingTransition(R.anim.in_anim, R.anim.in_from_down);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
-    //线程安全
-    public void Toast(CharSequence text) {
-        if (null != text) {
-            Toast.makeText(getApplication(), text, Toast.LENGTH_LONG).show();
+    @Override
+    protected void onDestroy() {
+        try {
+            IOUtil.deleteAllFile(ImageName);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        super.onDestroy();
     }
 }

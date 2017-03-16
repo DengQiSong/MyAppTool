@@ -11,7 +11,7 @@ import java.util.List;
  * 作者：Denqs on 2017/2/27.
  */
 
-public class MyBaseAdapter<T> extends BaseAdapter {
+public abstract class MyBaseAdapter<T> extends BaseAdapter {
     public Context context;
     public List<T> mInfolist;
 
@@ -53,6 +53,8 @@ public class MyBaseAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        return _getView(i, view, viewGroup);
     }
+
+    protected abstract View _getView(int i, View view, ViewGroup viewGroup);
 }
