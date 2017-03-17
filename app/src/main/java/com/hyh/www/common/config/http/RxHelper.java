@@ -70,6 +70,28 @@ public class RxHelper {
             }
         };
     }
+    /**
+     * @param <T>
+     * @return
+     */
+    public static <T> Observable.Transformer<HttpResult<T>, T> handleResult() {
+        return new Observable.Transformer<HttpResult<T>, T>() {
+            @Override
+            public Observable<T> call(Observable<HttpResult<T>> tObservable) {
+
+                return tObservable.flatMap(new Func1<HttpResult<T>, Observable<T>>() {
+                    @Override
+                    public Observable<T> call(HttpResult<T> result) {
+                        if (result.getCount() != 0) {
+                            return createData(result.getSubjects());
+                        } else {
+                            return Observable.error(new ApiException(result.getCount()));
+                        }
+                    }
+                }).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
 
     /**
      *

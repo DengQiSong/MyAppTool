@@ -34,6 +34,9 @@ public class TestPresenter implements TestContract.Presenter {
 
             @Override
             protected void _onSuccess(List<Subject> subjects) {
+                if (!view.isActive()) {
+                    return;
+                }
                 StringBuilder sb=new StringBuilder();
                 for (int i=0;i<subjects.size();i++){
                     sb.append("电影名：" + subjects.get(i).getTitle() + "\n");

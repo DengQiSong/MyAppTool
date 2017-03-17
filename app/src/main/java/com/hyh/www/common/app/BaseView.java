@@ -22,5 +22,7 @@ public interface BaseView<T> {
 
     //提示
     void showTip(String message);
+    //用来判断当前View是否还存在
+    boolean isActive();
 
 }

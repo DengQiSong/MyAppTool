@@ -76,6 +76,11 @@ public class TestFragment extends BaseFragment implements TestContract.View{
     }
 
     @Override
+    public boolean isActive() {
+        return isAdded();
+    }
+
+    @Override
     public void addSuccess(String string) {
         tv.setText(string);
     }

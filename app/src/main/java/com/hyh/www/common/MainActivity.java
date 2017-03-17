@@ -110,4 +110,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     public void onTabReselected(int position) {
 
     }
+
+    public boolean isAc(){
+        //判断是否还存在
+        return isFinishing();
+    }
 }
