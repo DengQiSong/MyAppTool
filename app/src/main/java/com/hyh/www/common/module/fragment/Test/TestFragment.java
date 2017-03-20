@@ -60,6 +60,7 @@ public class TestFragment extends BaseFragment implements TestContract.View{
             }
         });
         tv=(TextView) view.findViewById(R.id.tv_text);
+        presenter.doGet(getContext(),lifecycleSubject);
     }
 
 

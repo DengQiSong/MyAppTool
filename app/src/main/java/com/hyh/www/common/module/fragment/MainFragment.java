@@ -1,5 +1,6 @@
 package com.hyh.www.common.module.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
+import com.hyh.www.common.module.CollapsingToolActivity;
 import com.hyh.www.common.widget.banner.BannerBean;
 import com.hyh.www.common.widget.banner.BannerHolderView;
 
@@ -63,6 +65,13 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
             }
         }, bannerList).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused})
                 .setOnItemClickListener(this);
+
+        v.findViewById(R.id.but_tool).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                     startActivity(new Intent(getActivity(), CollapsingToolActivity.class));
+            }
+        });
 
 
     }
