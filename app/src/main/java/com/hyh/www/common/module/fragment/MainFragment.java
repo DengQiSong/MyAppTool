@@ -15,6 +15,7 @@ import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
 import com.hyh.www.common.module.CollapsingToolActivity;
+import com.hyh.www.common.module.MapViewTest;
 import com.hyh.www.common.widget.banner.BannerBean;
 import com.hyh.www.common.widget.banner.BannerHolderView;
 
@@ -69,10 +70,15 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
         v.findViewById(R.id.but_tool).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                     startActivity(new Intent(getActivity(), CollapsingToolActivity.class));
+                startActivity(new Intent(getActivity(), CollapsingToolActivity.class));
             }
         });
-
+        v.findViewById(R.id.but_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MapViewTest.class));
+            }
+        });
 
     }
 

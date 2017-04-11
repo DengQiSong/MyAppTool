@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
-import com.hyh.www.common.model.gen.DaoMaster;
-import com.hyh.www.common.model.gen.UserDao;
+import com.hyh.www.common.module.DaoMaster;
+import com.hyh.www.common.module.UserDao;
 
 /**
  * 作者：Denqs on 2017/2/27.

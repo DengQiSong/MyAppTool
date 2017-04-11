@@ -7,8 +7,8 @@ import android.os.Bundle;
 
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
 import com.hyh.www.common.config.config;
-import com.hyh.www.common.model.gen.DaoMaster;
-import com.hyh.www.common.model.gen.DaoSession;
+import com.hyh.www.common.module.DaoMaster;
+import com.hyh.www.common.module.DaoSession;
 
 /**
  * 作者：Denqs on 2017/2/27.

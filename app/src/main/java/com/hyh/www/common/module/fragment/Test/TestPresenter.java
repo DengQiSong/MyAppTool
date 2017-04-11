@@ -1,6 +1,7 @@
 package com.hyh.www.common.module.fragment.Test;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.hyh.www.common.app.ActivityLifeCycleEvent;
 import com.hyh.www.common.config.Url;
@@ -30,18 +31,12 @@ public class TestPresenter implements TestContract.Presenter {
     @Override
     public void doGet(Context context,PublishSubject<ActivityLifeCycleEvent> lifecycleSubject) {
         Observable ob = Api.getDefault().getTopMovie(0, 100);
-        HttpUtil.getInstance().getData(ob, new BaseSubscriber<List<Subject>>(context){
+        HttpUtil.getInstance().getData(ob, new BaseSubscriber(context){
+
 
             @Override
-            protected void _onSuccess(List<Subject> subjects) {
-                if (!view.isActive()) {
-                    return;
-                }
-                StringBuilder sb=new StringBuilder();
-                for (int i=0;i<subjects.size();i++){
-                    sb.append("电影名：" + subjects.get(i).getTitle() + "\n");
-                }
-                view.addSuccess(sb.toString());
+            protected void _onSuccess(Object o) {
+                Log.e("TAG",o.toString());
             }
 
             @Override

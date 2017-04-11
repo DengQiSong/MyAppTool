@@ -1,13 +1,16 @@
 package com.hyh.www.common.app;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
@@ -33,6 +36,15 @@ public class BaseActivity extends AppCompatActivity implements EasyPermission.Pe
         super.onCreate(savedInstanceState);
         if (TextUtils.isEmpty(BaseApplication.isKill)) {
             return;
+        }
+    }
+    public void openActivity(Class<? extends Activity> cls) {
+        startActivity(new Intent(this, cls));
+    }
+
+    public void setOnClickListener(View.OnClickListener listener, @IdRes int... ids) {
+        for (int id : ids) {
+            findViewById(id).setOnClickListener(listener);
         }
     }
 

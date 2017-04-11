@@ -15,13 +15,13 @@ public class User {
     private Long id;
     private String name;
     private String uio;
-    @Transient
     private int tempUsageCount; // not persisted
-    @Generated(hash = 1988254827)
-    public User(Long id, String name, String uio) {
+    @Generated(hash = 1508352746)
+    public User(Long id, String name, String uio, int tempUsageCount) {
         this.id = id;
         this.name = name;
         this.uio = uio;
+        this.tempUsageCount = tempUsageCount;
     }
     @Generated(hash = 586692638)
     public User() {
@@ -43,6 +43,12 @@ public class User {
     }
     public void setUio(String uio) {
         this.uio = uio;
+    }
+    public int getTempUsageCount() {
+        return this.tempUsageCount;
+    }
+    public void setTempUsageCount(int tempUsageCount) {
+        this.tempUsageCount = tempUsageCount;
     }
 
 

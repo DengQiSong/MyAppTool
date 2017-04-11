@@ -16,8 +16,6 @@ buildscript {
 }
 greendao {
     schemaVersion 3
-    daoPackage 'com.hyh.www.common.model.gen'
-    targetGenDir 'src/main/java'
 }
 android {
     compileSdkVersion 24

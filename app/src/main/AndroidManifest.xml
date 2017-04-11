@@ -85,6 +85,9 @@
         <activity
             android:name=".module.CollapsingToolActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.MapViewTest"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
