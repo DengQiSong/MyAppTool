@@ -52,6 +52,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Stay on the left" />
+            <Button
+                android:id="@+id/btn_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="开始定时任务" />
+            <Button
+                android:id="@+id/btn_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="停止定时任务" />
         </LinearLayout>
     </ScrollView>
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->

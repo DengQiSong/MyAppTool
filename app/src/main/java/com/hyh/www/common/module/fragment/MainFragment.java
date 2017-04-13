@@ -1,7 +1,11 @@
 package com.hyh.www.common.module.fragment;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,10 +18,12 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
+import com.hyh.www.common.app.BaseApplication;
 import com.hyh.www.common.app.BaseFragment;
 import com.hyh.www.common.module.CollapsingToolActivity;
 import com.hyh.www.common.module.MapViewTest;
 import com.hyh.www.common.module.recycler.LeftActivity;
+import com.hyh.www.common.module.service.TimingService;
 import com.hyh.www.common.widget.banner.BannerBean;
 import com.hyh.www.common.widget.banner.BannerHolderView;
 
@@ -40,6 +46,10 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
 
     @BindView(R.id.am_btn_left)
     Button amBtnLeft;
+    @BindView(R.id.btn_start)
+    Button btn_start;
+    @BindView(R.id.btn_end)
+    Button btn_end;
 
     public static MainFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
@@ -94,7 +104,18 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
                 startActivity(new Intent(getActivity(), LeftActivity.class));
             }
         });
-
+        btn_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startAlarm();
+            }
+        });
+        btn_end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                endAlarm();
+            }
+        });
 
     }
 
@@ -118,6 +139,28 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
         super.onPause();
         //停止翻页
         convenientBanner.stopTurning();
+    }
+
+    PendingIntent collectSender;
+    int anHour = 5 * 1000; //毫秒数
+    private void startAlarm() {
+        Intent collectIntent = new Intent(getActivity(), TimingService.class);
+        getActivity().startService(collectIntent);
+        if (collectSender == null) {
+            collectSender = PendingIntent.getService(getContext(), 0, collectIntent, 0);
+        }
+        AlarmManager am = (AlarmManager) BaseApplication.getInstances().getSystemService(Context.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), anHour, collectSender);
+    }
+
+    private void endAlarm() {
+        Intent collectIntent = new Intent(getActivity(), TimingService.class);
+        if (collectSender == null) {
+            collectSender = PendingIntent.getService(getContext(), 0, collectIntent, 0);
+        }
+        AlarmManager am = (AlarmManager) BaseApplication.getInstances().getSystemService(Context.ALARM_SERVICE);
+        am.cancel(collectSender);
+        getActivity().stopService(collectIntent);
     }
 
 }
