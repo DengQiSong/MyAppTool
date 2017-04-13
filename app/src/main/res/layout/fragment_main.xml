@@ -34,18 +34,24 @@
             </RelativeLayout>
 
             <Button
-                android:layout_marginTop="12dp"
-                android:text="CollapsingToolbar"
+                android:id="@+id/but_tool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/but_tool" />
+                android:layout_marginTop="12dp"
+                android:text="CollapsingToolbar" />
 
             <Button
-                android:layout_marginTop="12dp"
-                android:text="地图效果测试"
+                android:id="@+id/but_test"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/but_test" />
+                android:layout_marginTop="12dp"
+                android:text="地图效果测试" />
+
+            <Button
+                android:id="@+id/am_btn_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stay on the left" />
         </LinearLayout>
     </ScrollView>
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -16,11 +17,15 @@ import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
 import com.hyh.www.common.module.CollapsingToolActivity;
 import com.hyh.www.common.module.MapViewTest;
+import com.hyh.www.common.module.recycler.LeftActivity;
 import com.hyh.www.common.widget.banner.BannerBean;
 import com.hyh.www.common.widget.banner.BannerHolderView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 作者：Denqs on 2017/3/6.
@@ -32,6 +37,9 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
     private String[] images = {"http://img6.web07.cn/UPics/Bizhi/2016/0913/121474130955191.jpg", "http://pic17.nipic.com/20111122/6759425_152002413138_2.jpg", "http://img3.duitang.com/uploads/item/201510/10/20151010211325_ZdA4R.jpeg", "http://pic.pp3.cn/uploads//201603/20160321008.jpg"};
     private String[] images_flag = {"最热风景", "此处风景独好", "最美风景啊", "这个真不错"};
     private List<BannerBean> bannerList;
+
+    @BindView(R.id.am_btn_left)
+    Button amBtnLeft;
 
     public static MainFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
@@ -46,6 +54,7 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, v);
         initView(v);
         return v;
     }
@@ -79,6 +88,13 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
                 startActivity(new Intent(getActivity(), MapViewTest.class));
             }
         });
+        amBtnLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LeftActivity.class));
+            }
+        });
+
 
     }
 

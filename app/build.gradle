@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'com.jakewharton.butterknife'
 // 使用数据库升级辅助GreenDaoUpgradeHelper时添加
 allprojects {
     repositories {
@@ -44,6 +45,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:24.2.1'
     //数据库
@@ -64,4 +66,7 @@ dependencies {
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
     //图片裁剪
     compile 'com.yalantis:ucrop:2.2.0'
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }

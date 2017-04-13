@@ -52,7 +52,7 @@ public class ImageLoader {
         public Builder() {
             this.type = ImageLoaderUtil.PIC_SMALL;
             this.url = "";
-            this.placeHolder = R.mipmap.ic_test_1;
+            this.placeHolder = R.mipmap.ic_launcher;
             this.imgView = null;
             this.wifiStrategy = ImageLoaderUtil.LOAD_STRATEGY_NORMAL;
         }

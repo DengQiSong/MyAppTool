@@ -88,6 +88,9 @@
         <activity
             android:name=".module.MapViewTest"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.recycler.LeftActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
