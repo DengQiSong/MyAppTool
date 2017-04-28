@@ -33,7 +33,6 @@ import rx.functions.Func1;
 public class MyFragment extends BaseFragment {
 
     CircularImageView imageView;
-    TextView textView;
 
     public static MyFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
@@ -54,7 +53,6 @@ public class MyFragment extends BaseFragment {
     public void initView(View v) {
         imageView = (CircularImageView) v.findViewById(R.id.circular);
         imageView.setRect_adius(120);
-        textView = (TextView) v.findViewById(R.id.textView);
         ImageTool.loadUrl(getActivity(), imageView, Url.Image_Url);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

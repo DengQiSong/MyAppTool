@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#dcdcdc"
@@ -15,13 +16,19 @@
         android:scaleType="fitXY" />
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <com.hyh.www.common.widget.myview.PeopleView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="#ffffff"
-        android:gravity="center"
-        android:text="这个还是空白页"
-        android:textSize="36sp" />
+        android:textColor="#222"
+        android:textSize="16sp"
+        app:birthplace="@string/birthplace"
+        app:careers="@string/careers"
+        app:name="@string/name"
+        app:nationality="@string/nationality"
+        app:sex="@string/sex"
+        app:age="600"
+        app:adult="true"
+        app:high="192"
+        app:weight="200"
+        app:obese="mid"/>
 </LinearLayout>

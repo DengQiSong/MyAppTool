@@ -4,4 +4,10 @@
     <string name="web">网站</string>
     <string name="test">测试</string>
     <string name="my">个人</string>
+
+    <string name="name">孙悟空</string>
+    <string name="sex">雄猴</string>
+    <string name="nationality">傲来国</string>
+    <string name="birthplace">东胜神州傲来国花果山</string>
+    <string name="careers">齐天大圣</string>
 </resources>

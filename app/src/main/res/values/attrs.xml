@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PeopleView">
+        <attr name="name" format="reference" />
+        <attr name="sex" format="reference" />
+        <attr name="age" format="integer" />
+        <attr name="high" format="integer" />
+        <attr name="weight" format="integer" />
+        <attr name="obese">
+            <flag name="fat" value="2" />
+            <flag name="mid" value="1" />
+            <flag name="thin" value="0" />
+        </attr>
+        <attr name="adult" format="boolean" />
+        <attr name="nationality" format="reference"/>
+        <attr name="birthplace" format="reference"/>
+        <attr name="careers" format="reference"/>
+    </declare-styleable>
+</resources>
