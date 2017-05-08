@@ -16,4 +16,7 @@
         <attr name="birthplace" format="reference"/>
         <attr name="careers" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="ScalePanel">
+        <attr name="total" format="integer" />
+    </declare-styleable>
 </resources>
