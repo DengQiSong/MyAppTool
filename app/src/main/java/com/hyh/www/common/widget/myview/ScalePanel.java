@@ -359,4 +359,11 @@ public class ScalePanel extends View {
         sesameItemModels.add(ItemModel700);
         return sesameItemModels;
     }
+    public void setTotal(int total){
+        if(total!=0){
+            this.total=total;
+            invalidateView();
+            getProgressAnimator();
+        }
+    }
 }

@@ -19,13 +19,14 @@ import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
 import com.hyh.www.common.module.Html5Activity;
+import com.hyh.www.common.widget.myview.ScalePanel;
 
 /**
  * 作者：Denqs on 2017/3/7.
  */
 
 public class WebFragment extends BaseFragment {
-
+    ScalePanel scalePanel;
     public static WebFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
         args.putString(MainActivity.ARGS_NAVI_BTN_NAME, fragConent);
@@ -50,6 +51,8 @@ public class WebFragment extends BaseFragment {
                  startActivity(new Intent("com.dqs.www.ui.activity.htmlactivity"));
              }
          });
+        scalePanel=(ScalePanel) view.findViewById(R.id.sp_panel);
+//        scalePanel.setTotal(888);
     }
 
 
