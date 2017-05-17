@@ -17,18 +17,25 @@
 
 
     <com.hyh.www.common.widget.myview.PeopleView
+        android:id="@+id/peopleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#222"
         android:textSize="16sp"
+        app:adult="true"
+        app:age="600"
         app:birthplace="@string/birthplace"
         app:careers="@string/careers"
+        app:high="192"
         app:name="@string/name"
         app:nationality="@string/nationality"
+        app:obese="mid"
         app:sex="@string/sex"
-        app:age="600"
-        app:adult="true"
-        app:high="192"
-        app:weight="200"
-        app:obese="mid"/>
+        app:weight="200" />
+
+    <com.hyh.www.common.widget.myview.RoundProgress
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        app:current="1200"
+        app:max="3600" />
 </LinearLayout>

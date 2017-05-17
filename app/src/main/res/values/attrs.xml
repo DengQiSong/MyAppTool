@@ -19,4 +19,10 @@
     <declare-styleable name="ScalePanel">
         <attr name="total" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="RoundProgress">
+        <attr name="max" format="integer" />
+        <attr name="current" format="integer" />
+        <attr name="colors" format="color" />
+    </declare-styleable>
 </resources>
