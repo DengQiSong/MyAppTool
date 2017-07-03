@@ -34,8 +34,8 @@
         app:weight="200" />
 
     <com.hyh.www.common.widget.myview.RoundProgress
-        android:layout_width="98dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:current="1200"
+        app:current="1234"
         app:max="3600" />
 </LinearLayout>

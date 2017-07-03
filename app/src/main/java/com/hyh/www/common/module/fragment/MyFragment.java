@@ -42,16 +42,19 @@ public class MyFragment extends BaseFragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_my, container, false);
-        initView(v);
-        return v;
+    protected int layoutRes() {
+        return R.layout.fragment_my;
     }
 
-    public void initView(View v) {
-        imageView = (CircularImageView) v.findViewById(R.id.circular);
+    @Override
+    protected void onViewReallyCreated(View view) {
+        super.onViewReallyCreated(view);
+        initView();
+    }
+
+    public void initView() {
+        imageView = (CircularImageView) findView(R.id.circular);
         imageView.setRect_adius(120);
         ImageTool.loadUrl(getActivity(), imageView, Url.Image_Url);
         imageView.setOnClickListener(new View.OnClickListener() {

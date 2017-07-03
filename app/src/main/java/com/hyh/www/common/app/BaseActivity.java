@@ -17,6 +17,7 @@ import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
 import com.hyh.www.common.config.easyPermission.easyPermission.EasyPermission;
 
 import rx.subjects.PublishSubject;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * 作者：Denqs on 2017/2/27.

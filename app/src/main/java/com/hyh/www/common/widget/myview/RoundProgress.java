@@ -2,6 +2,7 @@ package com.hyh.www.common.widget.myview;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.graphics.RectF;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 import com.hyh.www.common.R;
@@ -134,9 +136,8 @@ public class RoundProgress extends View {
         canvas.drawText(testString, baseLineX, baseline, mPaint);
     }
 
-    private int dipToPx(int dip) {
-        float scale = getContext().getResources().getDisplayMetrics().density;
-        return (int) (dip * scale + 0.5f * (dip >= 0 ? 1 : -1));
+    public static int dipToPx(int dip) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, Resources.getSystem().getDisplayMetrics());
     }
 
     /***

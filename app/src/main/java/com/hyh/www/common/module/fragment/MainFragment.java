@@ -60,16 +60,19 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
 
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, v);
-        initView(v);
-        return v;
+    protected int layoutRes() {
+        return R.layout.fragment_main;
     }
 
-    public void initView(View v) {
+    @Override
+    protected void onViewReallyCreated(View view) {
+        super.onViewReallyCreated(view);
+        ButterKnife.bind(this, view);
+        initView();
+    }
+
+    public void initView() {
         bannerList = new ArrayList<>();
         for (int i = 0; i < images.length; i++) {
             BannerBean bannerBean = new BannerBean();
@@ -77,7 +80,7 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
             bannerBean.setImageName(images_flag[i]);
             bannerList.add(bannerBean);
         }
-        convenientBanner = (ConvenientBanner<BannerBean>) v.findViewById(R.id.convenientBanner);
+        convenientBanner = findView(R.id.convenientBanner);
         convenientBanner.setPages(new CBViewHolderCreator() {
             @Override
             public Object createHolder() {
@@ -86,13 +89,13 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
         }, bannerList).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused})
                 .setOnItemClickListener(this);
 
-        v.findViewById(R.id.but_tool).setOnClickListener(new View.OnClickListener() {
+        findView(R.id.but_tool).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), CollapsingToolActivity.class));
             }
         });
-        v.findViewById(R.id.but_test).setOnClickListener(new View.OnClickListener() {
+        findView(R.id.but_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), MapViewTest.class));
@@ -143,6 +146,7 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
 
     PendingIntent collectSender;
     int anHour = 5 * 1000; //毫秒数
+
     private void startAlarm() {
         Intent collectIntent = new Intent(getActivity(), TimingService.class);
         getActivity().startService(collectIntent);

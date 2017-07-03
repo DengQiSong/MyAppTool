@@ -27,6 +27,7 @@ import com.hyh.www.common.widget.myview.ScalePanel;
 
 public class WebFragment extends BaseFragment {
     ScalePanel scalePanel;
+
     public static WebFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
         args.putString(MainActivity.ARGS_NAVI_BTN_NAME, fragConent);
@@ -36,25 +37,26 @@ public class WebFragment extends BaseFragment {
 
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_web, container, false);
-        initView(v);
-        return v;
+    protected int layoutRes() {
+        return R.layout.fragment_web;
     }
 
-    public void initView(View view) {
-         view.findViewById(R.id.yam).setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 startActivity(new Intent("com.dqs.www.ui.activity.htmlactivity"));
-             }
-         });
-        scalePanel=(ScalePanel) view.findViewById(R.id.sp_panel);
-//        scalePanel.setTotal(888);
+    @Override
+    protected void onViewReallyCreated(View view) {
+        super.onViewReallyCreated(view);
+        initView();
     }
 
+    public void initView() {
+        findView(R.id.yam).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent("com.dqs.www.ui.activity.htmlactivity"));
+            }
+        });
+        scalePanel = findView(R.id.sp_panel);
+    }
 
 
 }

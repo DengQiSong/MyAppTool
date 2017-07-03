@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--标题栏颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--状态栏颜色-->

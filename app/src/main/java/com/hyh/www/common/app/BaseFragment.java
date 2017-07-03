@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,8 @@ import rx.subjects.PublishSubject;
  * 作者：Denqs on 2017/2/27.
  */
 
-public class BaseFragment extends Fragment implements EasyPermission.PermissionCallback {
+public abstract class BaseFragment extends Fragment implements EasyPermission.PermissionCallback {
+    private static final String TAG = "BaseFragment";
     //动态权限获取
     protected Context mContext;
     private int mRequestCode;
@@ -37,11 +39,42 @@ public class BaseFragment extends Fragment implements EasyPermission.PermissionC
         this.mContext = context;
     }
 
+    protected abstract int layoutRes();
+
+    protected void onViewReallyCreated(View view) {
+    }
+
+    private View rootView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         lifecycleSubject.onNext(ActivityLifeCycleEvent.CREATE);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
+        if (null == rootView) {
+            rootView = inflater.inflate(layoutRes(), null);
+            onViewReallyCreated(rootView);
+        } else {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+            if (parent != null) {
+                parent.removeView(rootView);
+            }
+        }
+        return rootView;
+    }
+
+    public <VIEW extends View> VIEW findView(int id) {
+        if (null != rootView) {
+            View child = rootView.findViewById(id);
+            try {
+                return (VIEW) child;
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "findView: " + String.valueOf(e.getMessage()));
+                return null;
+            }
+        }
+        return null;
     }
 
     @Override

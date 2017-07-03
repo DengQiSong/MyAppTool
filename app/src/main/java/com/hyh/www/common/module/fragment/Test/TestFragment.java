@@ -38,28 +38,31 @@ public class TestFragment extends BaseFragment implements TestContract.View{
 
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_test, container, false);
-        initView(v);
-        return v;
+    protected int layoutRes() {
+        return R.layout.fragment_test;
     }
 
-    public void initView(View view){
-        view.findViewById(R.id.doGet).setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void onViewReallyCreated(View view) {
+        super.onViewReallyCreated(view);
+        initView();
+    }
+
+    public void initView(){
+        findView(R.id.doGet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.doGet(getContext(),lifecycleSubject);
             }
         });
-        view.findViewById(R.id.But_on).setOnClickListener(new View.OnClickListener() {
+       findView(R.id.But_on).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.doDownload(getContext());
             }
         });
-        tv=(TextView) view.findViewById(R.id.tv_text);
+        tv=findView(R.id.tv_text);
         presenter.doGet(getContext(),lifecycleSubject);
     }
 
