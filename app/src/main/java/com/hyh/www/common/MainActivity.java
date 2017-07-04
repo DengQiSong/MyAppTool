@@ -16,11 +16,10 @@ import com.hyh.www.common.module.fragment.WebFragment;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.ButterKnife;
-
-public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener{
+public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     private Map<Integer, Fragment> mFragmentMap = new HashMap<>();//底部菜单对应fragment
     public static final String ARGS_NAVI_BTN_NAME = "ARGS_NAVI_BTN_NAME";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +112,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
-    public boolean isAc(){
+    public boolean isAc() {
         //判断是否还存在
         return isFinishing();
     }

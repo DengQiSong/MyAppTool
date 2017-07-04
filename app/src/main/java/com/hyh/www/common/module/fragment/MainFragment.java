@@ -6,16 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.dqs.zxing_library.activity.CaptureActivity;
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseApplication;
@@ -43,13 +41,15 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
     private String[] images = {"http://img6.web07.cn/UPics/Bizhi/2016/0913/121474130955191.jpg", "http://pic17.nipic.com/20111122/6759425_152002413138_2.jpg", "http://img3.duitang.com/uploads/item/201510/10/20151010211325_ZdA4R.jpeg", "http://pic.pp3.cn/uploads//201603/20160321008.jpg"};
     private String[] images_flag = {"最热风景", "此处风景独好", "最美风景啊", "这个真不错"};
     private List<BannerBean> bannerList;
-
+    final static int REQUEST_CODE = 2222;
     @BindView(R.id.am_btn_left)
     Button amBtnLeft;
     @BindView(R.id.btn_start)
     Button btn_start;
     @BindView(R.id.btn_end)
     Button btn_end;
+    @BindView(R.id.btn_scanning)
+    Button btn_scanning;
 
     public static MainFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
@@ -119,7 +119,13 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
                 endAlarm();
             }
         });
-
+        btn_scanning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), CaptureActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
     }
 
     @Override
@@ -128,6 +134,21 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
             Log.e(TAG, bannerList.get(position).getImageName());
         }
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            return;
+        }
+        switch (requestCode) {
+            case REQUEST_CODE:
+                String result = data.getStringExtra("result");
+                Log.e("REQUEST_QR_CODE", "result:" + result);
+                showToast(result);
+                break;
+        }
     }
 
     @Override
