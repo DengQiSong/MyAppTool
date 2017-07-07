@@ -9,7 +9,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.hyh.www.common.app.BaseActivity;
 import com.hyh.www.common.module.fragment.MainFragment;
-import com.hyh.www.common.module.fragment.MyFragment;
+import com.hyh.www.common.module.fragment.My.MyFragment;
 import com.hyh.www.common.module.fragment.Test.TestFragment;
 import com.hyh.www.common.module.fragment.WebFragment;
 

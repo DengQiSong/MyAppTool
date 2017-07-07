@@ -1,4 +1,4 @@
-package com.hyh.www.common.module.fragment;
+package com.hyh.www.common.module.fragment.My;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -70,8 +70,6 @@ public class MyFragment extends BaseFragment {
 
                     @Override
                     public String apply(@NonNull Uri uri) throws Exception {
-//                        Bitmap bitmap= ImageUtils.getBitmap(IOUtil.getRealFilePath(getContext(),uri));
-//                        imageView.setImageBitmap(bitmap);
                         return IOUtil.getRealFilePath(getContext(), uri);
                     }
                 }).subscribe(new Consumer<String>() {
