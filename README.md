@@ -13,7 +13,8 @@
 * [retrofit](http://square.github.io/retrofit) 一个针对Android和Java类型安全的http客户端,由Square公司开源的一个高质量高效率的http库
 * [glide](https://github.com/bumptech/glide) Android的图像加载和缓存库，专注于平滑滚动,由谷歌在谷歌开发者论坛介绍的图片加载库，作者是bumptech
 * [greendao](https://github.com/greenrobot/greenDAO) 是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案,关于greenDAO的概念可以看[官网](http://greenrobot.org/greendao/)
-* [butterknife](https://github.com/JakeWharton/butterknife) 专注于Android系统的View注入框架,可以减少大量的findViewById以及setOnClickListener代码,
+* [butterknife](https://github.com/JakeWharton/butterknife) 专注于Android系统的View注入框架,可以减少大量的findViewById以及setOnClickListener代码
+* [RxJava](https://github.com/ReactiveX/RxJava) 一个对于构成使用的Java虚拟机观察序列异步和基于事件的程序库
 # 编程思想
 
 * 能复制就复制，节约时间避免出错
