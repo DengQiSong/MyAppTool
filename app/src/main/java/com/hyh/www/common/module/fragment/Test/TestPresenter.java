@@ -3,18 +3,11 @@ package com.hyh.www.common.module.fragment.Test;
 import android.content.Context;
 import android.util.Log;
 
-import com.hyh.www.common.app.ActivityLifeCycleEvent;
+import com.dqs.http_library.callback.HttpBaseObserver;
+import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.config.Url;
-import com.hyh.www.common.config.http.Api;
-import com.hyh.www.common.config.http.BaseSubscriber;
-import com.hyh.www.common.config.http.HttpUtil;
-import com.hyh.www.common.module.vo.Subject;
+import com.hyh.www.common.model.test.TestModel;
 import com.hyh.www.common.utils.DownloadUtils;
-
-import java.util.List;
-
-import rx.Observable;
-import rx.subjects.PublishSubject;
 
 /**
  * 作者：Denqs on 2017/3/14.
@@ -29,21 +22,13 @@ public class TestPresenter implements TestContract.Presenter {
     }
 
     @Override
-    public void doGet(Context context,PublishSubject<ActivityLifeCycleEvent> lifecycleSubject) {
-        Observable ob = Api.getDefault().getTopMovie(0, 100);
-        HttpUtil.getInstance().getData(ob, new BaseSubscriber(context){
-
-
+    public void doGet(Context context) {
+        TestModel.getInstance().execute(0, 100, new HttpBaseObserver((MainActivity)context) {
             @Override
             protected void _onSuccess(Object o) {
                 Log.e("TAG",o.toString());
-            }
-
-            @Override
-            protected void _onError(String message) {
-                     view.showTip(message);
-            }
-        }, ActivityLifeCycleEvent.DESTROY, lifecycleSubject);
+        }
+        });
     }
 
     @Override

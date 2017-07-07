@@ -5,7 +5,10 @@ import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import com.dqs.http_library.app.BaseHttpUrl;
+import com.dqs.http_library.app.HttpApplication;
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
+import com.hyh.www.common.config.Url;
 import com.hyh.www.common.config.config;
 import com.hyh.www.common.module.DaoMaster;
 import com.hyh.www.common.module.DaoSession;
@@ -14,7 +17,7 @@ import com.hyh.www.common.module.DaoSession;
  * 作者：Denqs on 2017/2/27.
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends HttpApplication {
     public static BaseApplication instances;
     //数据库
     private MySQLiteOpenHelper mHelper;
@@ -34,6 +37,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        BaseHttpUrl.getInstance().setReleaseAddress(Url.BASE_URL);
         instances = this;
         setDatabase();
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {

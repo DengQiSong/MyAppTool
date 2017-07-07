@@ -1,25 +1,12 @@
 package com.hyh.www.common.module.fragment.Test;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
-import com.hyh.www.common.app.ActivityLifeCycleEvent;
 import com.hyh.www.common.app.BaseFragment;
-import com.hyh.www.common.config.http.Api;
-import com.hyh.www.common.config.http.BaseSubscriber;
-import com.hyh.www.common.config.http.HttpUtil;
-import com.hyh.www.common.utils.DownloadUtils;
-
-import junit.framework.Test;
-
-import rx.Observable;
 
 /**
  * 作者：Denqs on 2017/3/7.
@@ -53,7 +40,7 @@ public class TestFragment extends BaseFragment implements TestContract.View{
         findView(R.id.doGet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.doGet(getContext(),lifecycleSubject);
+                presenter.doGet(getContext());
             }
         });
        findView(R.id.But_on).setOnClickListener(new View.OnClickListener() {
@@ -63,7 +50,6 @@ public class TestFragment extends BaseFragment implements TestContract.View{
             }
         });
         tv=findView(R.id.tv_text);
-        presenter.doGet(getContext(),lifecycleSubject);
     }
 
 

@@ -54,13 +54,6 @@ dependencies {
     compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.3.0'
     //图片
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    //网络加载
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
-    //异步rxjava
-    compile 'io.reactivex:rxjava:1.1.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
     //广告
     compile 'com.bigkoo:convenientbanner:2.0.5'
     //底部导航栏
@@ -73,4 +66,5 @@ dependencies {
 
     //二维码扫描
     compile project(':zxing_library')
+    compile project(':http_library')
 }

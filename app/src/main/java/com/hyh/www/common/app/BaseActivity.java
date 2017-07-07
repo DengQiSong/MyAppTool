@@ -1,6 +1,7 @@
 package com.hyh.www.common.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,32 +14,36 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dqs.http_library.callback.BaseImpl;
 import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
 import com.hyh.www.common.config.easyPermission.easyPermission.EasyPermission;
 
-import rx.subjects.PublishSubject;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * 作者：Denqs on 2017/2/27.
  */
 
-public class BaseActivity extends AppCompatActivity implements EasyPermission.PermissionCallback {
+public class BaseActivity extends AppCompatActivity implements EasyPermission.PermissionCallback, BaseImpl {
     //动态权限获取
     private int mRequestCode;
     private String[] mPermissions;
     private PermissionCallBackM mPermissionCallBack;
     //生命周期控制
-    public final PublishSubject<ActivityLifeCycleEvent> lifecycleSubject = PublishSubject.create();
+    private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.CREATE);
         super.onCreate(savedInstanceState);
         if (TextUtils.isEmpty(BaseApplication.isKill)) {
             return;
         }
+        if (null == mCompositeDisposable) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
     }
+
     public void openActivity(Class<? extends Activity> cls) {
         startActivity(new Intent(this, cls));
     }
@@ -65,20 +70,20 @@ public class BaseActivity extends AppCompatActivity implements EasyPermission.Pe
 
     @Override
     protected void onPause() {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.PAUSE);
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.STOP);
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.DESTROY);
         super.onDestroy();
+        if (null != mCompositeDisposable) {
+            mCompositeDisposable.clear();
+        }
     }
 
     public void toast(String content) {
@@ -142,5 +147,18 @@ public class BaseActivity extends AppCompatActivity implements EasyPermission.Pe
         if (mPermissionCallBack != null) {
             mPermissionCallBack.onPermissionDeniedM(requestCode, perms);
         }
+    }
+
+    @Override
+    public boolean addDisposable(Disposable disposable) {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.add(disposable);
+        }
+        return true;
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }

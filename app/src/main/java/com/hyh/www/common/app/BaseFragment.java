@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
 import com.hyh.www.common.config.easyPermission.easyPermission.EasyPermission;
 
-import rx.subjects.PublishSubject;
-
 /**
  * 作者：Denqs on 2017/2/27.
  */
@@ -30,8 +28,6 @@ public abstract class BaseFragment extends Fragment implements EasyPermission.Pe
     private int mRequestCode;
     private String[] mPermissions;
     private PermissionCallBackM mPermissionCallBack;
-    //生命周期控制
-    public final PublishSubject<ActivityLifeCycleEvent> lifecycleSubject = PublishSubject.create();
 
     @Override
     public void onAttach(Context context) {
@@ -49,7 +45,6 @@ public abstract class BaseFragment extends Fragment implements EasyPermission.Pe
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.CREATE);
         super.onCreateView(inflater, container, savedInstanceState);
         if (null == rootView) {
             rootView = inflater.inflate(layoutRes(), null);
@@ -79,19 +74,16 @@ public abstract class BaseFragment extends Fragment implements EasyPermission.Pe
 
     @Override
     public void onPause() {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.PAUSE);
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.STOP);
         super.onStop();
     }
 
     @Override
     public void onDestroy() {
-        lifecycleSubject.onNext(ActivityLifeCycleEvent.DESTROY);
         super.onDestroy();
     }
 

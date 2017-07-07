@@ -1,30 +1,24 @@
 package com.hyh.www.common.module.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
 import com.hyh.www.common.config.Url;
 import com.hyh.www.common.utils.IOUtil;
-import com.hyh.www.common.utils.ImageUtils;
 import com.hyh.www.common.widget.CircularImageView;
 import com.hyh.www.common.widget.ImageSelectView;
 import com.hyh.www.common.widget.imageloader.ImageTool;
 
-import rx.Observable;
-import rx.functions.Action1;
-import rx.functions.Func1;
+import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 /**
  * 作者：Denqs on 2017/3/7.
@@ -72,20 +66,21 @@ public class MyFragment extends BaseFragment {
         if (data == null) return;
         switch (resultCode) {
             case 10002:
-                Observable.just(data.getData()).map(new Func1<Uri, String>() {
+                Observable.just(data.getData()).map(new Function<Uri, String>() {
 
                     @Override
-                    public String call(Uri uri) {
+                    public String apply(@NonNull Uri uri) throws Exception {
 //                        Bitmap bitmap= ImageUtils.getBitmap(IOUtil.getRealFilePath(getContext(),uri));
 //                        imageView.setImageBitmap(bitmap);
                         return IOUtil.getRealFilePath(getContext(), uri);
                     }
-                }).subscribe(new Action1<String>() {
+                }).subscribe(new Consumer<String>() {
                     @Override
-                    public void call(String s) {
-                        Log.e("MyFragment","图片路径"+s);
+                    public void accept(@NonNull String s) throws Exception {
+                        Log.e("MyFragment", "图片路径" + s);
                         ImageTool.loadUrl(getActivity(), imageView, s);
                     }
+
                 });
                 break;
         }
