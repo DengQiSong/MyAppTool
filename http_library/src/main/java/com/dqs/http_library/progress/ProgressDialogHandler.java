@@ -1,4 +1,4 @@
-package com.hyh.www.common.widget;
+package com.dqs.http_library.progress;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -15,8 +15,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hyh.www.common.R;
-import com.hyh.www.common.config.http.ProgressCancelListener;
+import com.dqs.http_library.R;
 
 import java.lang.ref.WeakReference;
 
@@ -25,28 +24,27 @@ import java.lang.ref.WeakReference;
  * 网络加载等待窗口
  */
 
-public class ProgressDialog extends Handler {
+public class ProgressDialogHandler extends Handler {
     public Dialog mDialog;
-    public static final int SHOW_PROGRESS_DIALOG = 1;
-    public static final int DISMISS_PROGRESS_DIALOG = 2;
     private Context context;
-    private boolean cancelable;
+    private boolean cancelable = false;
     private ProgressCancelListener mProgressCancelListener;
     private final WeakReference<Context> reference;
     private AnimationDrawable animationDrawable = null;
 
 
-    public ProgressDialog(Context context, ProgressCancelListener mProgressCancelListener,
-                            boolean cancelable) {
+    public ProgressDialogHandler(Context context, ProgressCancelListener mProgressCancelListener,
+                                 boolean cancelable) {
         super();
         this.reference = new WeakReference<Context>(context);
         this.mProgressCancelListener = mProgressCancelListener;
         this.cancelable = cancelable;
     }
-    private void create(String message){
-        TextView text=null;
+
+    private void create(String message) {
+        TextView text = null;
         if (mDialog == null) {
-            context  = reference.get();
+            context = reference.get();
             mDialog = new Dialog(context, R.style.common_dialog);
             View dialogView = LayoutInflater.from(context).inflate(
                     R.layout.progress_view, null);
@@ -56,13 +54,12 @@ public class ProgressDialog extends Handler {
             animationDrawable = (AnimationDrawable) loadingImage.getDrawable();
             mDialog.setCanceledOnTouchOutside(false);
             mDialog.setCancelable(cancelable);
-//            mDialog.setCancelable(false);
             mDialog.setContentView(dialogView);
 
             mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
-                    if(mProgressCancelListener!=null)
+                    if (mProgressCancelListener != null)
                         mProgressCancelListener.onCancelProgress();
                 }
             });
@@ -70,14 +67,14 @@ public class ProgressDialog extends Handler {
             dialogWindow.setGravity(Gravity.CENTER_VERTICAL
                     | Gravity.CENTER_HORIZONTAL);
         }
-        if(text!=null){
-            if (TextUtils.isEmpty(message) ){
+        if (text != null) {
+            if (TextUtils.isEmpty(message)) {
                 text.setVisibility(View.GONE);
             } else {
                 text.setText(message);
             }
         }
-        if (!mDialog.isShowing()&&context!=null) {
+        if (!mDialog.isShowing() && context != null) {
             mDialog.show();
             if (animationDrawable != null) {
                 animationDrawable.setOneShot(false);
@@ -86,7 +83,7 @@ public class ProgressDialog extends Handler {
         }
     }
 
-    public void show(String msg){
+    public void show(String msg) {
         create(msg);
     }
 
@@ -98,25 +95,13 @@ public class ProgressDialog extends Handler {
         mDialog.setCancelable(cancel);
     }
 
-    public  void dismiss() {
-        context  = reference.get();
-        if (mDialog != null&&mDialog.isShowing()&&!((Activity) context).isFinishing()) {
+    public void dismiss() {
+        context = reference.get();
+        if (mDialog != null && mDialog.isShowing() && !((Activity) context).isFinishing()) {
             String name = Thread.currentThread().getName();
             mDialog.dismiss();
             animationDrawable.stop();
             mDialog = null;
-        }
-    }
-
-    @Override
-    public void handleMessage(Message msg) {
-        switch (msg.what) {
-            case SHOW_PROGRESS_DIALOG:
-                create("");
-                break;
-            case DISMISS_PROGRESS_DIALOG:
-                dismiss();
-                break;
         }
     }
 }

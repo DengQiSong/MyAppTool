@@ -1,4 +1,4 @@
-package com.hyh.www.common.config.http;
+package com.dqs.http_library.progress;
 
 /**
  * 作者：Denqs on 2017/3/1.

@@ -1,4 +1,4 @@
-package com.hyh.www.common.config.http;
+package com.dqs.http_library;
 
 /**
  * 作者：Denqs on 2017/3/1.
@@ -7,6 +7,7 @@ package com.hyh.www.common.config.http;
 public class ApiException extends RuntimeException {
     public static final int USER_NOT_EXIST = 100;
     public static final int WRONG_PASSWORD = 101;
+    public static final int REQUEST_FAILURE = 0;
     private static String message;
 
     public ApiException(int resultCode) {
