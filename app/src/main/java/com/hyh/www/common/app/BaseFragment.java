@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.hyh.www.common.config.easyPermission.PermissionCallBackM;
 import com.hyh.www.common.config.easyPermission.easyPermission.EasyPermission;
 
+import butterknife.ButterKnife;
+
 /**
  * 作者：Denqs on 2017/2/27.
  */
@@ -48,6 +50,7 @@ public abstract class BaseFragment extends Fragment implements EasyPermission.Pe
         super.onCreateView(inflater, container, savedInstanceState);
         if (null == rootView) {
             rootView = inflater.inflate(layoutRes(), null);
+            ButterKnife.bind(this, rootView);
             onViewReallyCreated(rootView);
         } else {
             ViewGroup parent = (ViewGroup) rootView.getParent();

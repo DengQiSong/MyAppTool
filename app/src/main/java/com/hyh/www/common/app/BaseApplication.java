@@ -10,8 +10,8 @@ import com.dqs.http_library.app.HttpApplication;
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
 import com.hyh.www.common.config.Url;
 import com.hyh.www.common.config.config;
-import com.hyh.www.common.module.DaoMaster;
-import com.hyh.www.common.module.DaoSession;
+import com.hyh.www.common.module.vo.DaoMaster;
+import com.hyh.www.common.module.vo.DaoSession;
 
 /**
  * 作者：Denqs on 2017/2/27.

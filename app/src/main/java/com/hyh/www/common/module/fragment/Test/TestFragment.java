@@ -8,13 +8,21 @@ import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
 
+import java.io.File;
+
+import butterknife.BindView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 /**
  * 作者：Denqs on 2017/3/7.
  */
 
 public class TestFragment extends BaseFragment implements TestContract.View{
     private TestContract.Presenter presenter;
-    private TextView tv;
+    @BindView(R.id.tv_text)
+    TextView tv;
     public static TestFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
         args.putString(MainActivity.ARGS_NAVI_BTN_NAME, fragConent);
@@ -49,7 +57,6 @@ public class TestFragment extends BaseFragment implements TestContract.View{
                 presenter.doDownload(getContext());
             }
         });
-        tv=findView(R.id.tv_text);
     }
 
 

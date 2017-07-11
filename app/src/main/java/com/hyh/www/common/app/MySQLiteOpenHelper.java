@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
-import com.hyh.www.common.module.DaoMaster;
-import com.hyh.www.common.module.UserDao;
+import com.hyh.www.common.module.vo.DaoMaster;
+import com.hyh.www.common.module.vo.UserDao;
 
 /**
  * 作者：Denqs on 2017/2/27.
@@ -19,6 +19,6 @@ public class MySQLiteOpenHelper extends DaoMaster.OpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        MigrationHelper.migrate(db,UserDao.class);
+        MigrationHelper.migrate(db, UserDao.class);
     }
 }

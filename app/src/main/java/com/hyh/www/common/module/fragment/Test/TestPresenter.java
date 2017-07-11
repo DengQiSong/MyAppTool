@@ -30,6 +30,7 @@ public class TestPresenter implements TestContract.Presenter {
             @Override
             protected void _onSuccess(List<Subject> subjects) {
                 Log.e("TAG","数据总数"+subjects .size()+"，第一条数据title "+subjects.get(0).getTitle());
+                view.addSuccess("数据总数"+subjects .size()+"，第一条数据title "+subjects.get(0).getTitle());
             }
         });
     }

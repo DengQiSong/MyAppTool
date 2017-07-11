@@ -68,7 +68,6 @@ public class MainFragment extends BaseFragment implements OnItemClickListener {
     @Override
     protected void onViewReallyCreated(View view) {
         super.onViewReallyCreated(view);
-        ButterKnife.bind(this, view);
         initView();
     }
 

@@ -1,4 +1,4 @@
-package com.hyh.www.common.module;
+package com.hyh.www.common.module.vo;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
@@ -14,14 +14,14 @@ public class User {
     @Id
     private Long id;
     private String name;
-    private String uio;
-    private int tempUsageCount; // not persisted
-    @Generated(hash = 1508352746)
-    public User(Long id, String name, String uio, int tempUsageCount) {
+    private int age;
+    private String careers;
+    @Generated(hash = 1549616111)
+    public User(Long id, String name, int age, String careers) {
         this.id = id;
         this.name = name;
-        this.uio = uio;
-        this.tempUsageCount = tempUsageCount;
+        this.age = age;
+        this.careers = careers;
     }
     @Generated(hash = 586692638)
     public User() {
@@ -38,18 +38,19 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public String getUio() {
-        return this.uio;
+    public int getAge() {
+        return this.age;
     }
-    public void setUio(String uio) {
-        this.uio = uio;
+    public void setAge(int age) {
+        this.age = age;
     }
-    public int getTempUsageCount() {
-        return this.tempUsageCount;
+    public String getCareers() {
+        return this.careers;
     }
-    public void setTempUsageCount(int tempUsageCount) {
-        this.tempUsageCount = tempUsageCount;
+    public void setCareers(String careers) {
+        this.careers = careers;
     }
+
 
 
 }

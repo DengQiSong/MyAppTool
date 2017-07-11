@@ -1,31 +1,22 @@
 package com.hyh.www.common.module.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Message;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.GeolocationPermissions;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
 
 import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
-import com.hyh.www.common.module.Html5Activity;
 import com.hyh.www.common.widget.myview.ScalePanel;
+
+import butterknife.BindView;
 
 /**
  * 作者：Denqs on 2017/3/7.
  */
 
 public class WebFragment extends BaseFragment {
+    @BindView(R.id.sp_panel)
     ScalePanel scalePanel;
 
     public static WebFragment newInstance(String fragConent) {
@@ -55,7 +46,7 @@ public class WebFragment extends BaseFragment {
                 startActivity(new Intent("com.dqs.www.ui.activity.htmlactivity"));
             }
         });
-        scalePanel = findView(R.id.sp_panel);
+        scalePanel.setTotal(444);
     }
 
 
