@@ -66,5 +66,9 @@ dependencies {
 
     //二维码扫描
     compile project(':zxing_library')
+    //网络请求
     compile project(':http_library')
+    //自定义控件
+    compile project(':widgetlibrary')
+
 }

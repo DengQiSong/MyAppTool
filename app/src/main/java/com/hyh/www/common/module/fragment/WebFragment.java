@@ -8,6 +8,10 @@ import com.hyh.www.common.MainActivity;
 import com.hyh.www.common.R;
 import com.hyh.www.common.app.BaseFragment;
 import com.hyh.www.common.widget.myview.ScalePanel;
+import com.dqs.example.widgetlibrary.DownMenuView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -18,6 +22,11 @@ import butterknife.BindView;
 public class WebFragment extends BaseFragment {
     @BindView(R.id.sp_panel)
     ScalePanel scalePanel;
+
+    @BindView(R.id.dm_title)
+    DownMenuView downdMenu;
+
+    private List<String> menuData=new ArrayList<>();
 
     public static WebFragment newInstance(String fragConent) {
         Bundle args = new Bundle();
@@ -36,6 +45,7 @@ public class WebFragment extends BaseFragment {
     @Override
     protected void onViewReallyCreated(View view) {
         super.onViewReallyCreated(view);
+        getData();
         initView();
     }
 
@@ -47,7 +57,21 @@ public class WebFragment extends BaseFragment {
             }
         });
         scalePanel.setTotal(444);
+        downdMenu.setData(menuData);
+        downdMenu.setOnClickDownMenuItem(new DownMenuView.OnClickItemDownMenu() {
+            @Override
+            public void onItemClick(String currentProduct) {
+                downdMenu.setTitle(currentProduct);
+            }
+        });
     }
 
+    private void getData() {
+        String[] menuStr1 = new String[]{"全部", "逗逼斌的志愿", "逗逼斌的志向", "逗逼斌的日记", "逗逼斌的二货日子",
+                "逗逼斌的饮料", "逗逼斌的水果"};
+        for (int i = 0, len = menuStr1.length; i < len; ++i) {
+            menuData.add(menuStr1[i]);
+        }
+    }
 
 }

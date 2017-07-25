@@ -4,7 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="50dp">
+        <com.dqs.example.widgetlibrary.DownMenuView
+            android:id="@+id/dm_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
     <Button
         android:id="@+id/yam"
         android:layout_width="match_parent"

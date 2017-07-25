@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WidgetLibrary</string>
+    <color name="white">#ffffff</color>
+</resources>

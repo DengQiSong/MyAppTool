@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DowndMenu">
+        <attr name="titleSelected" format="color" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleSize" format="integer" />
+    </declare-styleable>
+
+</resources>
